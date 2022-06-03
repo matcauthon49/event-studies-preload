@@ -23,6 +23,7 @@ $$AR_{i\tau} = R_{i\tau} - E(R_{i\tau}\mid X_\tau)$$
 
 - Constant Mean Return Model:
 - Market Model
+- Models based on CAPM
 
 The user should be allowed to select the window over which the normal returns calculation will take place. Other statistical/economic models can be implemented, for example those given in [Event Studies for Financial Research](https://link.springer.com/book/10.1057/9781137368799). However, every core model requires the following features:
 
