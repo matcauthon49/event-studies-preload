@@ -6,16 +6,25 @@
 
 - Adding consistency checks: [Issue #29](https://github.com/xKDR/TSx.jl/issues/29)
 - Adding ```Vector{Date}``` based subsetting: [Issue #19](https://github.com/xKDR/TSx.jl/issues/19)
-- Assessing how well `Statistics.jl` is currently integrated with `TSx.jl`
+- Assessing how well `Statistics.jl` is currently integrated with `TSx.jl`, to reduce operation load
 
 ### Second Week
+
+- Implementation of intraday data (`DateTime`) support and indexing
+- Testing of indexing, joins and writing testcases for broadcasting and statistics operators
+- Adding a general, full-table aggregation function to provide cumulative operations (in particular will be used in CAR and CAAR calculation in Event Studies)
+
+If `rollApply`, `cumsum` etc are enough to deal with the last use case, then testing will be done.
+
+### Third Week
 
 - Addition of broadcasting mathematical operators ```(.+, .-, .*, ./)``` for TS objects with identical columns (can be done through ```Tables.jl``` interfaces)
 - Addition of integer-based indexing
 
-### Third Week
+### Fourth Week
 -  Integration with `GLM.jl`
     - Basic model support for Event Studies needs to be provided to the TS data structure. At the very least some form of linear regression model must be implemented. Since methods like `abnormalReturn` are going to be provided along with the base `eventStudy` method it makes sense to provide at least rudimentary regression facilities for estimating asset data over market data (at least to obtain the various factors required in normal estimation).
+- Null/missing value handling features
 
 ## Event Studies Design
 
@@ -41,4 +50,4 @@ The Average Abnormal Rate of Return is calculated as
 
 $$AAR_{t} = \frac{\Sigma_{i=1}^n AR^i_t}{n}$$
 
-Clearly this calculation will require broadcasting and efficient sampling/merger of various 
+Clearly this calculation will require broadcasting and efficient sampling/merger of various different stocks, so joins, missing data handling and *columnwise* operations (using lambdas, perhaps?) need to be implemented.
